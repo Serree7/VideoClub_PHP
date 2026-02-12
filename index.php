@@ -29,9 +29,9 @@ if (isset($_POST['login'])) {
 
            
             if ($userModel->rol == 1) {
-                header("Location: views/admin_dashboard.php");
+                header("Location: views/admin_listado.php");
             } else {
-                header("Location: views/user_dashboard.php"); 
+                header("Location: views/panel_usuario.php"); 
             }
             exit();
         } else {

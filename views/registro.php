@@ -4,16 +4,20 @@ require_once '../models/Usuario.php';
 
 $mensaje = "";
 
-if(isset($_POST['btnRegistrar'])) {
-    $db = (new Database())->getConnection();
-    $userModel = new Usuario($db);
+if (isset($_POST['btnRegistrar'])) {
+    try {
+        $database = new Database();
+        $db = $database->getConnection();
+        $userModel = new Usuario($db); 
 
-    try{
-        if($usserModel->registrar($_POST['username'], $_POST['password'])) {
-            $mensaje = "Usuario registrado con éxito <a href='../index.php'>Ir al Login</a>";
+        $nuevoUser = $_POST['username'];
+        $nuevaPass = $_POST['password'];
+
+        if ($userModel->registrar($nuevoUser, $nuevaPass)) {
+            $mensaje = "<p style='color:green;'>Registro con éxito. <a href='../index.php'>Inicia sesión aquí</a></p>";
         }
-    }catch (Exception $e){
-        $msg = "Error: " . $e->getMessage();
+    } catch (Exception $e) {
+        $mensaje = "<p style='color:red;'>Error al registrar: " . $e->getMessage() . "</p>";
     }
 }
 ?>
@@ -31,7 +35,5 @@ if(isset($_POST['btnRegistrar'])) {
         <input type="password" name="password" placeholder="Contraseña" required><br><br>
         <button type="submit" name="btnRegistrar">Registrarse</button>
     </form>
-    <br>
-    <a href="../index.php">Volver al Login</a>
 </body>
 </html>
