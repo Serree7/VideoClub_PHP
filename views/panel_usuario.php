@@ -1,4 +1,21 @@
 
+<?php
+session_start();
+
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ../index.php");
+    exit();
+}
+
+require_once '../config/Database.php';
+require_once '../models/Pelicula.php'; 
+
+$db = (new Database())->getConnection();
+$peliculaModel = new Pelicula($db);
+$peliculas = $peliculaModel->obtenerTodasConActores();
+?>
+
+
 
 <!DOCTYPE html>
 <html lang="es">
