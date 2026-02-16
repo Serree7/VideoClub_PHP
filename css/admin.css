@@ -1,0 +1,113 @@
+/* Estilos para el Panel de Administración */
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+}
+
+.admin-actions a {
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.btn-new {
+    background-color: #27ae60;
+    color: white;
+    margin-right: 10px;
+}
+
+.btn-secondary {
+    background-color: #7f8c8d;
+    color: white;
+}
+
+/* Tabla de Administración */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th {
+    background-color: #f8f9fa;
+    color: #2c3e50;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.admin-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.admin-table tr:hover {
+    background-color: #fcfcfc;
+}
+
+/* Enlaces de Acción */
+.action-links a {
+    text-decoration: none;
+    font-size: 0.85em;
+    padding: 5px 8px;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+.edit {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.delete {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.edit:hover { background-color: #bee5eb; }
+.delete:hover { background-color: #f5c6cb; }
+
+/* Estilos adicionales para formularios en admin.css */
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #2c3e50;
+}
+
+.form-group input, .form-group textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.form-actions {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.form-actions button {
+    border: none;
+    cursor: pointer;
+    padding: 12px 25px;
+    font-size: 1em;
+}

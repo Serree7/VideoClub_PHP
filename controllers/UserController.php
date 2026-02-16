@@ -25,6 +25,6 @@ class UsuarioController {
 
     private function escribirLog($user, $estado) {
         $log = "[" . date("Y-m-d H:i:s") . "] Usuario: $user - Estado: $estado\n";
-        file_put_contents("../logs/accesos.log", $log, FILE_APPEND);
+        file_put_contents("logs/accesos.log", $log, FILE_APPEND);
     }
 }

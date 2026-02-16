@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 1) {
     header("Location: ../index.php");
     exit();
@@ -8,35 +7,19 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 1) {
 
 require_once '../config/Database.php';
 require_once '../controllers/PeliculaController.php';
-
-$database = new Database();
-$db = $database->getConnection();
-
-$pController = new PeliculaController($db);
-$peliculas = $pController->obtenerCatalogo();
+include 'header.php'; 
 ?>
+<link rel="stylesheet" href="../css/admin.css">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Panel de Administración</h1>
-    <p>Bienvenido, <strong><?php echo $_SESSION['usuario']; ?></strong> | <a href="../index.php">Cerrar Sesión</a></p>
-    
-    <hr>
-    
-    <nav>
-        <a href="form_nueva_pelicula.php">Añadir Nueva Película</a> | 
-        <a href="gestion_actores.php">Gestionar Actores</a>
-    </nav>
+<div class="container">
+    <div class="admin-header">
+        <h2>Panel de Gestión de Películas</h2>
+        <div class="admin-actions">
+            <a href="nueva_pelicula.php" class="btn-new">+ Añadir Película</a>
+            </div>
+    </div>
 
-    <h2>Gestión de Catálogo</h2>
-
-    <table>
+    <table class="admin-table">
         <thead>
             <tr>
                 <th>Título</th>
@@ -48,22 +31,28 @@ $peliculas = $pController->obtenerCatalogo();
             </tr>
         </thead>
         <tbody>
-            <?php while ($row = $peliculas->fetch(PDO::FETCH_ASSOC)): ?>
+            <?php 
+            $db = (new Database())->getConnection();
+            $pController = new PeliculaController($db);
+            $peliculas = $pController->obtenerCatalogo();
+
+            while ($row = $peliculas->fetch(PDO::FETCH_ASSOC)): ?>
                 <tr>
-                    <td><?php echo $row['titulo']; ?></td>
-                    <td><?php echo $row['genero']; ?></td>
-                    <td><?php echo $row['pais']; ?></td>
-                    <td><?php echo $row['anyo']; ?></td>
-                    <td><?php echo $row['reparto'] ? $row['reparto'] : "<em>Sin reparto</em>"; ?></td>
-                    <td>
-                        <a href="editar_pelicula.php?id=<?php echo $row['id']; ?>" class="btn-edit">Modificar</a> | 
-                        <a href="eliminar_pelicula.php?id=<?php echo $row['id']; ?>" 
-                           class="btn-borrar" 
-                           onclick="return confirm('¿Estás seguro de que quieres borrar esta película?')">Borrar</a>
+                    <td><strong><?php echo htmlspecialchars($row['titulo']); ?></strong></td>
+                    <td><?php echo htmlspecialchars($row['genero']); ?></td>
+                    <td><?php echo htmlspecialchars($row['pais']); ?></td>
+                    <td><?php echo htmlspecialchars($row['anyo']); ?></td>
+                    <td><small><?php echo $row['reparto'] ? htmlspecialchars($row['reparto']) : "<em>Sin reparto</em>"; ?></small></td>
+                    <td class="action-links">
+                        <a href="editar_pelicula.php?id=<?php echo $row['id']; ?>" class="edit">Modificar</a>
+                        <a href="../controllers/PeliculaController.php?action=eliminar&id=<?php echo $row['id']; ?>" 
+                           class="delete" 
+                           onclick="return confirm('¿Seguro que quieres eliminar esta película?')">Borrar</a>
                     </td>
                 </tr>
             <?php endwhile; ?>
         </tbody>
     </table>
+</div>
 </body>
 </html>

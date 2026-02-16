@@ -1,0 +1,56 @@
+/* --- Estilos para la Gestión de Incidencias --- */
+
+/* Contenedor de la tarjeta de incidencia (si decides no usar tablas) */
+.incidencia-card {
+    background: #fff;
+    border-left: 5px solid #e74c3c; /* Rojo para indicar problema */
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Colores de estado para las filas de la tabla */
+.status-pendiente {
+    border-left: 4px solid #f39c12; /* Naranja */
+    background-color: #fffcf5;
+}
+
+.status-leida {
+    border-left: 4px solid #27ae60; /* Verde */
+    opacity: 0.8;
+}
+
+/* Estilo para el texto del mensaje */
+.mensaje-texto {
+    font-style: italic;
+    color: #555;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Badge de usuario en la incidencia */
+.user-badge {
+    font-weight: bold;
+    color: #2c3e50;
+    text-transform: uppercase;
+    font-size: 0.85em;
+}
+
+/* Botón de acción rápido */
+.btn-resolver {
+    background-color: #27ae60;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 0.8em;
+    transition: background 0.3s;
+}
+
+.btn-resolver:hover {
+    background-color: #219150;
+}
